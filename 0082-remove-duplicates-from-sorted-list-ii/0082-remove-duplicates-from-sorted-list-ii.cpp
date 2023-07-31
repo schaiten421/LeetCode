@@ -19,7 +19,7 @@ public:
             while(curr->next && curr->next->val==duplicate){
                 ListNode* temp=curr->next;
                 curr->next=curr->next->next;
-                delete(temp);
+                // delete(temp);
             }}
             else{
                 curr=curr->next;
