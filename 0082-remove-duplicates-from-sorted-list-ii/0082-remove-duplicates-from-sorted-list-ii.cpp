@@ -17,7 +17,7 @@ public:
         while(curr->next && curr->next->next){
             if(curr->next->val==curr->next->next->val){int duplicate=curr->next->val;
             while(curr->next && curr->next->val==duplicate){
-                ListNode* temp=curr->next;
+                //ListNode* temp=curr->next;
                 curr->next=curr->next->next;
                 // delete(temp);
             }}
