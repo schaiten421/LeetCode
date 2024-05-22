@@ -1,13 +1,13 @@
 class Solution {
 private:
     int binarysearch(vector<int> nums,int low,int high,int target){
-        while(low<=high){
+        if(low<=high){
             int mid=low+(high-low)/2;
             
             if(nums[mid]==target)return mid;
             
-            else if(nums[mid]>target)high=mid-1;
-            else low=mid+1;
+            else if(nums[mid]>target)return binarysearch(nums,low,mid-1,target);
+            else return binarysearch(nums,mid+1,high,target);
         }
         return -1;
     }
