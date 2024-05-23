@@ -7,6 +7,13 @@ public:
         }
         return maxi;
     }
+    int findmin(vector<int> bloomDay){
+        int mini=INT_MAX;
+        for(int i=0;i<bloomDay.size();i++){
+            mini=min(mini,bloomDay[i]);
+        }
+        return mini;
+    }
     long long bouq(vector<int> bloomDay,int k,int mid){
         //1, 5
         long long totbouq=0,k1=0;
@@ -21,7 +28,7 @@ public:
         return totbouq;
     }
     int minDays(vector<int>& bloomDay, int m, int k) {
-        int low=1,high=findmax(bloomDay);
+        int low=findmin(bloomDay),high=findmax(bloomDay);
         if((long long)m*k>bloomDay.size())return -1;
         long long ans=LONG_MAX;
         while(low<=high){
