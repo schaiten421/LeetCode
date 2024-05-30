@@ -10,23 +10,18 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
         if(head==NULL || head->next==NULL)return NULL;
-        ListNode *slow=head;
-        ListNode *fast=head;
+        ListNode* slow=head, *fast=head;
         while(fast!=NULL && fast->next!=NULL){
             slow=slow->next;
             fast=fast->next->next;
-            if(fast==slow)
-                break;
+            if(slow==fast)break;
         }
-        fast=head;int count=1;
-        while(!(fast==slow)){
-            if(slow->next==NULL)
-                return NULL;
+        if(slow!=fast)return NULL;
+        slow=head;
+        while(slow!=fast){
             slow=slow->next;
             fast=fast->next;
-            count++;
         }
-        return fast;
+        return slow;
     }
-    
 };
