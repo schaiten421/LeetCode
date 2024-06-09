@@ -11,11 +11,10 @@ public:
                 st.push(a[i]);
             }
             else{
-                if(st.empty()){continue;}
-                else{
+                
                     if(st.size()>1){ans+=')';}
                     st.pop();
-                }
+                
             }
         }
         return ans;
