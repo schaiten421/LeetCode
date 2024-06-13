@@ -21,16 +21,23 @@ public:
         }
         return true;
     }
-    void f(int col,vector<string> &temp,vector<vector<string>> &ans,int n){
+    void f(int col,vector<string> &temp,vector<vector<string>> &ans,int n
+          ,vector<int> &leftrow, vector<int> &upperdiag, vector<int> &lowerdiag){
         if(col==n){
             ans.push_back(temp);
             return;
         }
         for(int row=0;row<n;row++){
-            if(isSafe(row,col,temp,n)){
+            if(leftrow[row]==0 && lowerdiag[row+col]==0 && upperdiag[n-1+col-row]==0){
                 temp[row][col]='Q';
-                f(col+1,temp,ans,n);
+                leftrow[row]=1;
+                lowerdiag[row+col]=1;
+                upperdiag[n-1+col-row]=1;
+                f(col+1,temp,ans,n,leftrow,upperdiag,lowerdiag);
                 temp[row][col]='.';
+                leftrow[row]=0;
+                lowerdiag[row+col]=0;
+                upperdiag[n-1+col-row]=0;
             }
         }
     }
@@ -41,8 +48,10 @@ public:
         for(int i=0;i<n;i++){
             temp.push_back(s);
         }
-        f(0,temp,ans,n);
+        vector<int> leftrow(n,0),upperdiag(2*n-1,0),lowerdiag(2*n-1,0); 
+        f(0,temp,ans,n,leftrow,upperdiag,lowerdiag);
         return ans;
         
     }
+    
 };
