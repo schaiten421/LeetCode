@@ -1,26 +1,26 @@
 class Solution {
 public:
-    bool isSafe(int row,int col,vector<string> temp,int n){
-        int duprow=row;
-        int dupcol=col;
-        while(row>=0 && col>=0){
-            if(temp[row][col]=='Q')return false;
-            row--;
-            col--;
-        }
-        row=duprow;col=dupcol;
-        while(col>=0){
-            if(temp[row][col]=='Q')return false;
-            col--;
-        }
-        col=dupcol;
-        while(row<n&& col>=0){
-            if(temp[row][col]=='Q')return false;
-            row++;
-            col--;
-        }
-        return true;
-    }
+    // bool isSafe(int row,int col,vector<string> temp,int n){
+    //     int duprow=row;
+    //     int dupcol=col;
+    //     while(row>=0 && col>=0){
+    //         if(temp[row][col]=='Q')return false;
+    //         row--;
+    //         col--;
+    //     }
+    //     row=duprow;col=dupcol;
+    //     while(col>=0){
+    //         if(temp[row][col]=='Q')return false;
+    //         col--;
+    //     }
+    //     col=dupcol;
+    //     while(row<n&& col>=0){
+    //         if(temp[row][col]=='Q')return false;
+    //         row++;
+    //         col--;
+    //     }
+    //     return true;
+    // }
     void f(int col,vector<string> &temp,vector<vector<string>> &ans,int n
           ,vector<int> &leftrow, vector<int> &upperdiag, vector<int> &lowerdiag){
         if(col==n){
