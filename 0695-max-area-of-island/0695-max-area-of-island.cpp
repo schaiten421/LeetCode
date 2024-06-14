@@ -1,28 +1,38 @@
 class Solution {
 public:
-    void dfs(int row, int col,vector<vector<int>> grid, int &cnt,vector<vector<int>> &vis){
-        if(row<0 || col<0 || row>=grid.size() || col>=grid[0].size() || grid[row][col]==0 || vis[row][col]==1)return;
-        vis[row][col]=1;
-        cnt++;
-        dfs(row+1,col,grid,cnt,vis);
-        dfs(row-1,col,grid,cnt,vis);
-        dfs(row,col+1,grid,cnt,vis);
-        dfs(row,col-1,grid,cnt,vis);
-        
-        
+    int dfs(vector<vector<int>>&grid,int i,int j,int n,int m)
+    {
+	//checking corner cases for moving in 4 direction up down left right
+        if(i>=0 and i<n and j>=0 and j<m and grid[i][j]==1)
+        {
+            grid[i][j]=0;//updating grid value
+            //counting all the island  
+            return 1+ dfs(grid,i+1,j,n,m)+dfs(grid,i-1,j,n,m)+dfs(grid,i,j+1,n,m)+dfs(grid,i,j-1,n,m);
+            
+        }
+        return 0;
     }
+    
+    
+    
     int maxAreaOfIsland(vector<vector<int>>& grid) {
-        vector<vector<int>> vis(grid.size(),vector<int>(grid[0].size(),0));
-        int maxi=0;
-        for(int i=0;i<grid.size();i++){
-            for(int j=0;j<grid[0].size();j++){
-                if(!vis[i][j] && grid[i][j]==1){
-                    int cnt=0;
-                    dfs(i,j,grid,cnt,vis);
-                    maxi=max(maxi,cnt);
+        
+        int max_area=0;
+        int n=grid.size();
+        int m=grid[0].size();
+        //moving every point of grid  and updating its value when you travelled
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    int count=dfs(grid,i,j,n,m);
+					//finding maximum area
+                    max_area=max(max_area,count);
                 }
             }
         }
-        return maxi;
+        return max_area;
     }
 };
