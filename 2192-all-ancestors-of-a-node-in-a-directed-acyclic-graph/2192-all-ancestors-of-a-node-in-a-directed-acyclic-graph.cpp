@@ -12,7 +12,6 @@ public:
             }
         }
         vector<vector<int>> ans(n);
-        vector<int> toposort;
         queue<int> q;
         for(int i=0;i<n;i++){
             if(indegree[i]==0)q.push(i);
@@ -20,7 +19,6 @@ public:
         while(!q.empty()){
             int node=q.front();
             q.pop();
-            toposort.push_back(node);
             for(auto it:adj[node]){
                 indegree[it]--;
                 if(find(ans[it].begin(),ans[it].end(),node)==ans[it].end()){
