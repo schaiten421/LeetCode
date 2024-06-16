@@ -1,24 +1,32 @@
 class Solution {
 public:
-    void dfs(int node,vector<vector<int>> graph,vector<int> &temp,vector<vector<int>> &ans){
-        if(node==graph.size()-1){
-            ans.push_back(temp);
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int m=graph.size();
+        vector<int> indegree(m);
+        vector<vector<int>> adj(m);
+        for(int i=0;i<m;i++){
+            for(auto it:graph[i]){
+                adj[it].push_back(i);
+                indegree[i]++;
+            }
         }
-        for(auto it:graph[node]){
-            temp.push_back(it);
-            dfs(it,graph,temp,ans);
+        
+        
+        queue<int> q;
+        vector<int> safe;
+        for(int i=0;i<m;i++){
+            if(!indegree[i])q.push(i);
         }
-        temp.pop_back();
-        
-    }
-    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
-        vector<vector<int>> ans;
-        vector<int> temp;
-        temp.push_back(0);
-        dfs(0,graph,temp,ans);
-        return ans;
-        
-        
-        
+        while(!q.empty()){
+            int node=q.front();
+            q.pop();
+            safe.push_back(node);
+            for(auto it: adj[node]){
+                indegree[it]--;
+                if(!indegree[it])q.push(it);
+            }
+        }
+        sort(safe.begin(),safe.end());
+        return safe;
     }
 };
