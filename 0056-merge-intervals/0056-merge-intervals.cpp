@@ -4,14 +4,14 @@ public:
         sort(intervals.begin(),intervals.end());
         vector<vector<int>> ans;
         ans.push_back(intervals[0]);
-        int cnt=0;
+        int ind=0;
         for(int i=1;i<intervals.size();i++){
-            if(intervals[i][0]<=ans[cnt][1]){
-                if(intervals[i][1]>ans[cnt][1])ans[cnt][1]=intervals[i][1];
+            if(ans[ind][1]<intervals[i][0]){
+                ans.push_back(intervals[i]);
+                ind++;
             }
             else{
-                ans.push_back(intervals[i]);
-                cnt++;
+                ans[ind][1]=max(ans[ind][1],intervals[i][1]);
             }
         }
         return ans;
