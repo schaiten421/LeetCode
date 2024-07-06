@@ -3,12 +3,12 @@ public:
     long long maximumPoints(vector<int>& enemyEnergies, int currentEnergy) {
         sort(enemyEnergies.begin(),enemyEnergies.end());
         if(enemyEnergies[0]>currentEnergy)return 0;
-        int i=0,j=enemyEnergies.size()-1;
+        int j=enemyEnergies.size()-1;
         long long points=0;
         while(j>=0){
-            if(currentEnergy-enemyEnergies[i]>=0){
-                points+=currentEnergy/enemyEnergies[i];
-                currentEnergy=currentEnergy%enemyEnergies[i];
+            if(currentEnergy-enemyEnergies[0]>=0){
+                points+=currentEnergy/enemyEnergies[0];
+                currentEnergy=currentEnergy%enemyEnergies[0];
                 
             }
             else{
