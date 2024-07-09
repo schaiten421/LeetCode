@@ -5,7 +5,7 @@ public:
         double n=customers.size();
         int time=customers[0][0];
         for(int i=0;i<n;i++){
-            if(i!=0 && customers[i][0]>time)time=customers[i][0]+customers[i][1];
+            if(customers[i][0]>time)time=customers[i][0]+customers[i][1];
             else time+=customers[i][1];
             ans+=time-customers[i][0];
         }
