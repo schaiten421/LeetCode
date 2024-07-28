@@ -20,7 +20,8 @@ public:
                     root=root->right;
                 }
                 else{
-                    root->right=new TreeNode(val);
+                    TreeNode* node=new TreeNode(val);
+                    root->right=node;
                     break;
                 }
             }
@@ -29,7 +30,8 @@ public:
                     root=root->left;
                 }
                 else{
-                    root->left=new TreeNode(val);
+                    TreeNode* node=new TreeNode(val);
+                    root->left=node;
                     break;
                 }
             }
